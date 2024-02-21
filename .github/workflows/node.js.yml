@@ -13,8 +13,8 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: copy to Deploy server 
-        run: |
-          rsync -avzhe ssh . ubuntu@13.115.252.41:/home/ubuntu/actions-runner/_work/test-cicd/test-cicd/api
+        #run: |
+          #rsync -avzhe ssh . ubuntu@13.115.252.41:/home/ubuntu/actions-runner/_work/test-cicd/test-cicd/api
       - name: Start Application
         run: |
          ssh -o StrictHostKeyChecking=no ubuntu@13.115.252.41 'pm2 restart server'
