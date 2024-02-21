@@ -17,4 +17,4 @@ jobs:
       - name: Copy to Deploy server
         run: rsync -zhvr . ubuntu@13.115.252.41:/home/ubuntu/node-app
       - name: Start Application
-        run: ssh -o StrictHostKeyChecking=no ubuntu@13.115.252.41 'pm2 restart server'
+        run: ssh -o StrictHostKeyChecking=no ubuntu@13.115.252.41 'pm2 restart 0'
