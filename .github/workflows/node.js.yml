@@ -1,24 +1,21 @@
-name: Node.js CI
+name: Deploy to EC2
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  deploy:
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-          
-      - run: cd api
-      - run: npm ci
-      - run: npm run dev --if-present
+      - name: Install dependencies
+        run: npm install
+      - name: copy to Deploy server 
+        run: |
+         rsync -zhvr . ubuntu@3.83.33.91:/home/ubuntu/node-app
+      - name: Start Application
+        run: |
+         ssh -o StrictHostKeyChecking=no ubuntu@3.83.33.91 'pm2 restart server'
+       
