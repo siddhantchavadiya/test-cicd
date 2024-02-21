@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.get('/', (req, res) => {
-  res.send('Home Route Backend is running usign cicdRs.');
+  res.send('Home Route Backend is running usign CI/CD Tool.');
 });
 
 app.listen(port, () =>
